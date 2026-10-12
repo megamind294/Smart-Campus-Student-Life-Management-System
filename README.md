@@ -66,3 +66,16 @@ src/
 ## Kanban development
 
 See [docs/KANBAN.md](docs/KANBAN.md) for workflow, work-in-progress rules and a suggested backlog. The academic task board inside the app is distinct from the team's development board. Documentation is a suggested process, not evidence that meetings or reviews happened.
+
+## Hostinger deployment
+
+Target: `https://rinklesharma.pl/Smart-Campus-Student-Life-Management-System/`.
+
+```bash
+npm ci
+npm run build:hostinger
+```
+
+Upload the contents of `dist/` to `public_html/Smart-Campus-Student-Life-Management-System/` for the rinklesharma.pl hosting account. That folder should directly contain `index.html` and `assets/`; do not place another `dist/` folder inside it. Hash navigation keeps refreshes working without rewrite rules. Do not replace the domain root's index.html.
+
+GitHub Actions produces a `hostinger-build` artifact on each successful run. It contains a ZIP with the project folder already included; extract that ZIP in the domain's `public_html` folder. An authenticated hosting session is required to publish; generating the ZIP does not publish the website.

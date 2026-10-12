@@ -16,3 +16,14 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - run: npm run build:hostinger
+      - name: Package Hostinger upload
+        run: |
+          mkdir -p hostinger-package/Smart-Campus-Student-Life-Management-System
+          cp -a dist/. hostinger-package/Smart-Campus-Student-Life-Management-System/
+          cd hostinger-package
+          zip -r ../Smart-Campus-Hostinger.zip Smart-Campus-Student-Life-Management-System
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hostinger-build
+          path: Smart-Campus-Hostinger.zip
