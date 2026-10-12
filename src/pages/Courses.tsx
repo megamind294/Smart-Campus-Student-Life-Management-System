@@ -1,0 +1,12 @@
+import {useState} from 'react';
+import {ArrowUpRight,BookOpen,GraduationCap} from 'lucide-react';
+import {courses,summarize,prettyDate} from '../lib/model';
+import {useWorkspace} from '../lib/workspace';
+import {PageHeading,Badge,Progress,Modal,Empty,matches} from '../components/ui';
+export default function Courses({query}:{query:string}){
+ const {state}=useWorkspace();const [selected,setSelected]=useState<string>();const active=courses.find(c=>c.id===selected);
+ const filtered=courses.filter(c=>matches(c.name+' '+c.instructor,query));
+ return <><PageHeading eyebrow="LEARNING, ORGANIZED" title="My courses" description="Everything you need for the semester, subject by subject."/><div className="toolbar"><span className="view-tag">Semester 1 <Badge>{courses.length} courses</Badge></span><span className="muted small">{courses.reduce((n,c)=>n+c.credits,0)} ECTS credits · sample curriculum</span></div>
+ <div className="courses-grid">{filtered.map(c=>{const tasks=state.tasks.filter(t=>t.courseId===c.id);const sum=summarize(tasks);return <article className="course-card" key={c.id}><div className={`course-banner ${c.color}`}><span>{c.code}</span><GraduationCap size={64} strokeWidth={1}/></div><div className="course-card-body"><div className="row"><Badge tone={c.color}>{c.credits} ECTS</Badge><span className="small muted">Semester 1</span></div><h2>{c.name}</h2><p className="muted">{c.instructor}</p><p>{c.description}</p><div className="row small"><span>{sum.done} of {tasks.length} tasks completed</span><strong>{sum.progress}%</strong></div><Progress value={sum.progress}/><button className="course-open" onClick={()=>setSelected(c.id)}>View course <ArrowUpRight size={18}/></button></div></article>})}</div>{!filtered.length&&<Empty/>}
+ {active&&<Modal title={active.name} onClose={()=>setSelected(undefined)}><p className="muted">{active.instructor} · {active.credits} ECTS</p><p>{active.description}</p><h3>Course materials</h3>{active.materials.map(m=><details key={m.title} className="material"><summary><BookOpen size={16}/>{m.title}</summary><p>{m.body}</p></details>)}<h3>Related assignments</h3>{state.tasks.filter(t=>t.courseId===active.id).map(t=><div className="row material" key={t.id}><span>{t.title}</span><span className="small muted">{prettyDate(t.due)} · {t.status==='done'?'Completed':t.status==='progress'?'In Progress':'To Do'}</span></div>)}{!state.tasks.some(t=>t.courseId===active.id)&&<Empty message="No assignments for this course yet."/>}</Modal>}</>
+}

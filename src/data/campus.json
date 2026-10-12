@@ -1,0 +1,339 @@
+{
+  "members": [
+    {
+      "id": "rinkle",
+      "name": "Rinkle Sharma",
+      "studentId": "67784"
+    },
+    {
+      "id": "sai",
+      "name": "Sai Sri Akkireddi",
+      "studentId": "66918"
+    },
+    {
+      "id": "elienne",
+      "name": "Elienne Rugwiro",
+      "studentId": "72066"
+    },
+    {
+      "id": "zakaria",
+      "name": "Zakaria Elbarmaki",
+      "studentId": "70562"
+    },
+    {
+      "id": "mohammed",
+      "name": "Mohammed-elamine Kobbi",
+      "studentId": "67964"
+    },
+    {
+      "id": "favour",
+      "name": "Favour Oluwagbemiga",
+      "studentId": "64494"
+    }
+  ],
+  "courses": [
+    {
+      "id": "web",
+      "name": "Web Engineering",
+      "instructor": "Dr. Anna Nowak",
+      "code": "WE",
+      "color": "sage",
+      "credits": 5,
+      "description": "Build accessible, responsive applications using modern web technologies.",
+      "materials": [
+        {
+          "title": "Module overview",
+          "body": "Build accessible, responsive applications using modern web technologies."
+        },
+        {
+          "title": "Study checklist",
+          "body": "Review lecture notes, complete the practice exercises, and prepare questions for the next class."
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "name": "Databases & Warehouses",
+      "instructor": "Dr. Piotr Kowalski",
+      "code": "DB",
+      "color": "lavender",
+      "credits": 6,
+      "description": "Explore relational models, SQL queries and analytical data systems.",
+      "materials": [
+        {
+          "title": "Module overview",
+          "body": "Explore relational models, SQL queries and analytical data systems."
+        },
+        {
+          "title": "Study checklist",
+          "body": "Review lecture notes, complete the practice exercises, and prepare questions for the next class."
+        }
+      ]
+    },
+    {
+      "id": "agile",
+      "name": "Agile Project Management",
+      "instructor": "Dr. Marta Zielinska",
+      "code": "AP",
+      "color": "peach",
+      "credits": 4,
+      "description": "Deliver software incrementally with Kanban and collaborative planning.",
+      "materials": [
+        {
+          "title": "Module overview",
+          "body": "Deliver software incrementally with Kanban and collaborative planning."
+        },
+        {
+          "title": "Study checklist",
+          "body": "Review lecture notes, complete the practice exercises, and prepare questions for the next class."
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "Machine Learning",
+      "instructor": "Dr. Tomasz Wisniewski",
+      "code": "ML",
+      "color": "blue",
+      "credits": 6,
+      "description": "Understand supervised learning, evaluation and practical model development.",
+      "materials": [
+        {
+          "title": "Module overview",
+          "body": "Understand supervised learning, evaluation and practical model development."
+        },
+        {
+          "title": "Study checklist",
+          "body": "Review lecture notes, complete the practice exercises, and prepare questions for the next class."
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "Design the student dashboard",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "web",
+      "status": "progress",
+      "priority": "high",
+      "assigneeId": "rinkle",
+      "dueOffset": 2,
+      "projectId": "campus"
+    },
+    {
+      "id": "t2",
+      "title": "Prepare the Kanban workflow",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "agile",
+      "status": "todo",
+      "priority": "high",
+      "assigneeId": "sai",
+      "dueOffset": 1,
+      "projectId": "campus"
+    },
+    {
+      "id": "t3",
+      "title": "Build the course manager",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "web",
+      "status": "todo",
+      "priority": "medium",
+      "assigneeId": "elienne",
+      "dueOffset": 4,
+      "projectId": "campus"
+    },
+    {
+      "id": "t4",
+      "title": "Create the weekly timetable",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "web",
+      "status": "progress",
+      "priority": "medium",
+      "assigneeId": "zakaria",
+      "dueOffset": 3,
+      "projectId": "campus"
+    },
+    {
+      "id": "t5",
+      "title": "Document the JSON data model",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "db",
+      "status": "todo",
+      "priority": "medium",
+      "assigneeId": "mohammed",
+      "dueOffset": 5,
+      "projectId": "campus"
+    },
+    {
+      "id": "t6",
+      "title": "Write the user guide",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "agile",
+      "status": "todo",
+      "priority": "low",
+      "assigneeId": "favour",
+      "dueOffset": 7,
+      "projectId": "campus"
+    },
+    {
+      "id": "t7",
+      "title": "Set up the React project",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "web",
+      "status": "done",
+      "priority": "medium",
+      "assigneeId": "rinkle",
+      "dueOffset": -1,
+      "projectId": "campus"
+    },
+    {
+      "id": "t8",
+      "title": "Review database schema",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "db",
+      "status": "todo",
+      "priority": "high",
+      "assigneeId": "mohammed",
+      "dueOffset": -2,
+      "projectId": "data"
+    },
+    {
+      "id": "t9",
+      "title": "Complete model evaluation lab",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "ai",
+      "status": "done",
+      "priority": "medium",
+      "assigneeId": "sai",
+      "dueOffset": 0,
+      "projectId": ""
+    },
+    {
+      "id": "t10",
+      "title": "Read chapter: feature engineering",
+      "description": "Sample assignment. Add your notes and update the status as you work.",
+      "courseId": "ai",
+      "status": "todo",
+      "priority": "low",
+      "assigneeId": "elienne",
+      "dueOffset": 6,
+      "projectId": ""
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "title": "Web Engineering",
+      "courseId": "web",
+      "dayOffset": 0,
+      "time": "09:00",
+      "type": "Lecture",
+      "location": "Room A203"
+    },
+    {
+      "id": "e2",
+      "title": "Database design lab",
+      "courseId": "db",
+      "dayOffset": 1,
+      "time": "11:00",
+      "type": "Lab",
+      "location": "Computer Lab B12"
+    },
+    {
+      "id": "e3",
+      "title": "Smart Campus check-in",
+      "courseId": "agile",
+      "dayOffset": 2,
+      "time": "14:00",
+      "type": "Meeting",
+      "location": "Online"
+    },
+    {
+      "id": "e4",
+      "title": "Machine Learning",
+      "courseId": "ai",
+      "dayOffset": 3,
+      "time": "10:00",
+      "type": "Lecture",
+      "location": "Room C105"
+    },
+    {
+      "id": "e5",
+      "title": "Agile workshop",
+      "courseId": "agile",
+      "dayOffset": 4,
+      "time": "12:00",
+      "type": "Workshop",
+      "location": "Room A104"
+    }
+  ],
+  "grades": [
+    {
+      "id": "g1",
+      "courseId": "web",
+      "label": "UI fundamentals",
+      "value": 4.5
+    },
+    {
+      "id": "g2",
+      "courseId": "web",
+      "label": "Accessibility lab",
+      "value": 5
+    },
+    {
+      "id": "g3",
+      "courseId": "db",
+      "label": "SQL assessment",
+      "value": 4
+    },
+    {
+      "id": "g4",
+      "courseId": "agile",
+      "label": "Project proposal",
+      "value": 4.5
+    },
+    {
+      "id": "g5",
+      "courseId": "ai",
+      "label": "Classification lab",
+      "value": 3.5
+    }
+  ],
+  "attendance": [
+    {
+      "courseId": "web",
+      "attended": 9,
+      "total": 10
+    },
+    {
+      "courseId": "db",
+      "attended": 7,
+      "total": 9
+    },
+    {
+      "courseId": "agile",
+      "attended": 6,
+      "total": 6
+    },
+    {
+      "courseId": "ai",
+      "attended": 8,
+      "total": 10
+    }
+  ],
+  "projects": [
+    {
+      "id": "campus",
+      "name": "Smart Campus",
+      "description": "Our Agile team project: a single-page student life management system.",
+      "courseId": "agile"
+    },
+    {
+      "id": "data",
+      "name": "Data warehouse case study",
+      "description": "Design a dimensional model and a reporting workflow.",
+      "courseId": "db"
+    }
+  ]
+}
