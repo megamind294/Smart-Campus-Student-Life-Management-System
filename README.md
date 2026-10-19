@@ -65,7 +65,7 @@ src/
 
 ## Kanban development
 
-See [docs/KANBAN.md](docs/KANBAN.md) for the product requirements, MVP scope, and three-column GitHub Kanban workflow. The academic task board inside the app is distinct from the team's development board. Documentation is not evidence that the team has completed reviews or followed a Kanban history; record actual work in GitHub Projects.
+See [docs/KANBAN.md](docs/KANBAN.md) for the product requirements and MVP scope, and open the [Part II GitHub Kanban board](https://github.com/users/megamind294/projects/2/views/1). The academic task board inside the app is distinct from the team's development board. Documentation is not evidence that the team has completed reviews or followed a Kanban history; record actual work in GitHub Projects.
 
 ## Hostinger deployment
 

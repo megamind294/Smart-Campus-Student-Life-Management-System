@@ -32,7 +32,7 @@ Group projects are present as a local simulation, but shared project collaborati
 
 ## GitHub Kanban board
 
-Use a GitHub Projects board for the team's development work. The assignment board is separate from the academic assignment board inside the app. Keep the board's three workflow columns:
+The team development board is [Smart Campus - Part II Kanban](https://github.com/users/megamind294/projects/2), with the [Part II Board view](https://github.com/users/megamind294/projects/2/views/1). It is separate from the academic assignment board inside the app. Keep the board's three workflow columns:
 
 1. **To Do** — agreed work that has not started.
 2. **In Progress** — work currently being done.
