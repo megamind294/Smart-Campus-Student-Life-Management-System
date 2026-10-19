@@ -1,33 +1,63 @@
-# Development Kanban
+# Part II — Requirements, MVP, and Kanban
 
-Use GitHub Projects or Trello to maintain the team's real development history. The app's task board manages sample academic tasks; it does not replace the development board.
+## Product requirements
 
-## Columns
+Smart Campus is a responsive single-page student workspace. It brings common academic information and activities into one place so students can check their progress and manage their study week.
 
-Backlog → To Do → In Progress → Review / Testing → Done.
+### Core functionalities
 
-Set a suggested WIP limit of one In Progress card per member. Each card needs an owner, short description and acceptance criteria. A blocked task should explain the blocker. Review board flow regularly and save genuine activity history for the assignment.
+| Functionality | User need |
+| --- | --- |
+| Overview | See upcoming work, today's classes, course progress, grades, and attendance at a glance. |
+| Courses | Review course details, instructors, credits, study materials, and related assignments. |
+| Assignments | Create, edit, delete, filter, and update the status and priority of academic tasks. |
+| Calendar | Review a weekly schedule and manage events; assignment deadlines stay in sync. |
+| Grades and attendance | Record grades and attendance and see the resulting average and attendance rate. |
+| Group projects | Organize local project tasks and see project completion and team members. |
 
-## Definition of Done
+The current product is a front-end demo. It uses sample academic data and browser `localStorage`; it does not provide accounts, a backend, or shared real-time data.
 
-- Acceptance criteria met and no unresolved functional errors.
-- Relevant tests and production build pass.
-- Another team member reviews the change.
-- Documentation updated when behavior changes.
-- Feature works at mobile and desktop widths.
+## MVP (first version)
 
-## Initial demo implementation
+The MVP focuses on the individual student's essential weekly workflow:
 
-Foundation, JSON records, overview, courses, assignments, calendar, academic records and simulated group projects are implemented in the initial code. Do not mark review requirements complete until the team actually reviews them.
+- A responsive overview with upcoming assignments and today's classes.
+- A course list with course details and study materials.
+- Assignment creation, editing, deletion, filtering, priorities, and status updates.
+- A weekly calendar with event management and assignment deadlines.
+- Grade and attendance recording with summary calculations.
+- Persistence in the current browser, with clear demo/sample-data limitations.
 
-## Follow-up backlog
+Group projects are present as a local simulation, but shared project collaboration, accounts, and a server are not MVP requirements. They remain future work. The MVP does not claim to connect to university systems or store official academic records.
 
-| Work item | Acceptance criteria |
+## GitHub Kanban board
+
+Use a GitHub Projects board for the team's development work. The assignment board is separate from the academic assignment board inside the app. Keep the board's three workflow columns:
+
+1. **To Do** — agreed work that has not started.
+2. **In Progress** — work currently being done.
+3. **Done** — work whose acceptance criteria have been met.
+
+Create one issue or card per task. Include a short description, acceptance criteria, and an actual team owner. Move cards as work happens; do not backdate or invent progress. Keep the number of active cards realistic, and explain blockers in the issue. Use GitHub's activity history as evidence of the team's actual process.
+
+### Definition of Done
+
+- The task's acceptance criteria are met with no known functional errors.
+- Relevant tests and the production build pass.
+- A team member reviews the work.
+- Related documentation is updated.
+- The feature works at mobile and desktop widths.
+
+## Current implementation and follow-up work
+
+The initial code already implements the overview, courses, assignments, calendar, academic records, and simulated group projects. Their existence in the code is not evidence that the team completed a Kanban process or reviewed them. Record only genuine task ownership, progress, and review in the GitHub board.
+
+| Follow-up work | Acceptance criteria |
 | --- | --- |
 | Team code review | Each member can explain their module and documents review feedback. |
-| Accessibility review | Test keyboard navigation, screen readers and touch controls. |
-| Backend design | Agree on authentication, per-student records and project access. |
-| Shared project data | Authorized members see each other's updates via a backend. |
-| File attachments | Add upload rules, storage limits and access control. |
-| Automated browser tests | Cover task creation, calendar synchronization and reload persistence. |
-| Demo presentation | Demonstrate features and the team's actual Kanban history. |
+| Accessibility review | Test keyboard navigation, screen readers, and touch controls; record findings. |
+| Backend design | Agree on authentication, per-student records, and project access before implementation. |
+| Shared project data | Authorized members can see each other's updates through an agreed backend. |
+| File attachments | Define upload rules, storage limits, and access control. |
+| Automated browser tests | Cover task creation, calendar synchronization, and reload persistence. |
+| Demo presentation | Demonstrate product functionality and the team's genuine GitHub Kanban history. |

@@ -65,7 +65,7 @@ src/
 
 ## Kanban development
 
-See [docs/KANBAN.md](docs/KANBAN.md) for workflow, work-in-progress rules and a suggested backlog. The academic task board inside the app is distinct from the team's development board. Documentation is a suggested process, not evidence that meetings or reviews happened.
+See [docs/KANBAN.md](docs/KANBAN.md) for the product requirements, MVP scope, and three-column GitHub Kanban workflow. The academic task board inside the app is distinct from the team's development board. Documentation is not evidence that the team has completed reviews or followed a Kanban history; record actual work in GitHub Projects.
 
 ## Hostinger deployment
 
