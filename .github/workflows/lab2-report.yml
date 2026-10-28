@@ -1,0 +1,84 @@
+name: LAB 2 remote storage experiment
+on:
+  push:
+    branches: ["codex/lab2-storage-report"]
+    paths:
+      - "lab2/**"
+      - ".github/workflows/lab2-report.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lab2-storage-experiment
+  cancel-in-progress: false
+jobs:
+  experiment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      LAB2_OUTPUT_DIR: ${{ github.workspace }}/outputs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install report and database clients
+        run: |
+          python -m pip install psycopg2-binary pymongo minio pillow reportlab pypdf
+          sudo apt-get update -qq
+          sudo apt-get install -y poppler-utils fonts-dejavu-core
+      - name: Start real storage services
+        working-directory: lab2
+        run: |
+          mkdir -p evidence
+          docker compose up -d 2>&1 | tee evidence/compose-up.txt
+      - name: Execute all required storage operations
+        working-directory: lab2
+        run: python run_lab.py | tee evidence/execution-output.txt
+      - name: Capture container and environment evidence
+        if: always()
+        working-directory: lab2
+        run: |
+          docker compose ps > evidence/compose-ps.txt
+          docker compose ps --format json > evidence/compose-ps.json
+          docker compose images --format json > evidence/image-identities.json
+          python -m pip freeze > evidence/python-requirements.txt
+          docker version > evidence/docker-version.txt
+          docker compose logs --no-color --tail 40 > evidence/container-logs.txt
+      - name: Assemble final report and notebook
+        working-directory: lab2
+        run: |
+          python build_report.py
+          python build_notebook.py
+          mkdir -p ../outputs/report-pages
+          pdftoppm -scale-to 1400 -png ../outputs/LAB_2_Rinkle_Sharma_Saisri_Akkireddi_Report.pdf ../outputs/report-pages/page
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          p=Path('../outputs/LAB_2_Rinkle_Sharma_Saisri_Akkireddi_Report.pdf')
+          r=PdfReader(p)
+          text='\n'.join(page.extract_text() for page in r.pages)
+          assert all(f'Task {i}.' in text for i in range(1,9))
+          assert all(n in r.pages[0].extract_text() for n in ['Rinkle Sharma','67784','Saisri Akkireddi','66918'])
+          print('PDF structural check passed; pages:',len(r.pages))
+          Path('../outputs/report-text.txt').write_text(text,encoding='utf-8')
+          PY
+      - name: Upload final report and raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab2-report-and-evidence
+          retention-days: 3
+          path: |
+            outputs/
+            lab2/evidence/
+            lab2/test_images/
+            lab2/docker-compose.yml
+            lab2/run_lab.py
+            lab2/schema.sql
+            lab2/build_report.py
+            lab2/build_notebook.py
+      - name: Stop the isolated containers
+        if: always()
+        working-directory: lab2
+        run: docker compose down

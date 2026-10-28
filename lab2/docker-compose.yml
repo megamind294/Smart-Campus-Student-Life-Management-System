@@ -1,0 +1,46 @@
+name: lab2-storage-report
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ailab
+      POSTGRES_USER: labuser
+      POSTGRES_PASSWORD: lab2-local-demo-2026
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U labuser -d ailab"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  mongo:
+    image: mongo:8.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: labuser
+      MONGO_INITDB_ROOT_PASSWORD: lab2-local-demo-2026
+    ports:
+      - "127.0.0.1:57017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: lab2minio
+      MINIO_ROOT_PASSWORD: lab2-local-demo-2026
+    ports:
+      - "127.0.0.1:59000:9000"
+      - "127.0.0.1:59001:9001"
+    volumes:
+      - minio_data:/data
+volumes:
+  postgres_data:
+  mongo_data:
+  minio_data:
