@@ -18,7 +18,7 @@ md(f'''# LAB 2 - SQL + NoSQL + Object Storage
 | Rinkle Sharma | 67784 |
 | Saisri Akkireddi | 66918 |
 
-Report prepared: 28 October 2026. One report for the group; only one person submits it.
+Report prepared: 30 October 2026. One report for the group; only one person submits it.
 
 {status}
 
@@ -75,12 +75,14 @@ md('''## Task 3. Start the storage environment with Docker Compose
 
 PostgreSQL stores structured image metadata; MongoDB stores prediction logs; MinIO stores image bytes. The local services use independent named volumes and loopback host ports. The credentials below are disposable laboratory values. Run Docker Desktop first. These cells use real services and stop on failure rather than inventing outputs.''')
 compose=(ROOT/'docker-compose.yml').read_text(encoding='utf-8')
-code('COMPOSE = '+repr(compose)+'''
+dockerfile=(ROOT/'Dockerfile.minio').read_text(encoding='utf-8')
+code('COMPOSE = '+repr(compose)+'\nDOCKERFILE = '+repr(dockerfile)+'''
 compose_file = ROOT / "docker-compose.yml"
 compose_file.write_text(COMPOSE, encoding="utf-8")
+(ROOT / "Dockerfile.minio").write_text(DOCKERFILE, encoding="utf-8")
 print(COMPOSE)
 command = ["docker", "compose", "-f", str(compose_file)]
-subprocess.run(command + ["up", "-d"], check=True)
+subprocess.run(command + ["up", "--build", "-d"], check=True)
 status = subprocess.run(command + ["ps"], check=True, capture_output=True, text=True)
 print(status.stdout)
 (EVIDENCE / "compose-ps.txt").write_text(status.stdout, encoding="utf-8")

@@ -63,7 +63,7 @@ p('LAB 2 - Data Storage Methods in AI Systems','Sub2')
 p('Smart Campus image-storage prototype','Body2')
 story.append(Spacer(1,17))
 table(['Group member','Student ID'],[['Rinkle Sharma','67784'],['Saisri Akkireddi','66918']],[365,144])
-p('Report date: 28 October 2026. One report for the group; one group member submits it.','Small2')
+p('Report date: 30 October 2026. One report for the group; one group member submits it.','Small2')
 h('Objective and scope')
 p('This laboratory combines PostgreSQL for structured image metadata, MongoDB for flexible prediction-log documents, and MinIO for image files. A common image_id and a stored bucket/object key connect the three systems.')
 p('The exercise uses a Smart Campus context: building, classroom, sign and bicycle images. The source React Smart Campus application is background context only. This is a separate storage prototype; the existing application was not integrated with these services.')
@@ -104,8 +104,14 @@ compose=(ROOT/'docker-compose.yml').read_text(encoding='utf-8')
 code(compose,width=95)
 p('The image tags above describe the run configuration. Exact pulled image identities and service versions are retained in the evidence archive so a mutable tag does not become the sole record of the environment.','Small2')
 
+page();title('Task 3. Build the MinIO container')
+p('The prebuilt MinIO image could not be pulled. This Dockerfile builds the official community source release in a Go compiler container and copies its binary into a separate runtime image. Docker Compose builds it before starting the MinIO service.')
+code((ROOT/'Dockerfile.minio').read_text(encoding='utf-8'))
+p('The source release is fixed, and the actual source commit is recorded by git rev-parse HEAD. The build does not replace MinIO with an S3 emulator. This is an isolated teaching deployment; the production architecture in Task 8 is a design proposal.')
+p('Source/build reference: <link href="https://github.com/minio/minio/tree/RELEASE.2025-09-07T16-13-09Z" color="#137E88">official MinIO source release</link>.','Small2')
+
 page();title('Task 3. Running services and availability')
-code('docker compose -f docker-compose.yml up -d\ndocker compose -f docker-compose.yml ps\npython run_lab.py')
+code('docker compose -f docker-compose.yml up --build -d\ndocker compose -f docker-compose.yml ps\npython run_lab.py')
 status=(E/'compose-ps.txt').read_text(encoding='utf-8-sig')
 code(status,width=95)
 table(['Service','Host endpoint','Purpose'],[['PostgreSQL','127.0.0.1:55432','ailab database; constrained image metadata and indexed lookups.'],['MongoDB','127.0.0.1:57017','ailab.prediction_logs; flexible model-output documents.'],['MinIO API','127.0.0.1:59000','ai-images bucket; original image bytes.'],['MinIO Console','127.0.0.1:59001','Optional web interface; the run used the Python client.']],[100,145,264])
@@ -113,6 +119,7 @@ h('Availability verification')
 p('The execution script successfully established a PostgreSQL connection, sent a MongoDB ping and listed MinIO buckets before loading data. It then executed real reads and writes in all three systems. A running-container status alone is not treated as proof that the exercise succeeded.')
 table(['Recorded version / time','Value'],[['PostgreSQL',verification['postgres_version']],['MongoDB',verification['mongodb_version']],['Actual execution (UTC)',verification['actual_run_utc']]],[150,359],small=True)
 p('The UTC execution timestamp is distinct from the fixture upload_date and log timestamps. The latter deliberately start on 20 October 2026 to give deterministic sorting results.','Small2')
+p('MinIO is compiled from its official source release RELEASE.2025-09-07T16-13-09Z using the companion Dockerfile.minio. The source commit and binary version are captured in the evidence archive. The unavailable prebuilt image was not substituted with a different storage product.','Small2')
 
 page();title('Task 4. Structured metadata in PostgreSQL')
 h('Table definition and indexes')
@@ -220,7 +227,7 @@ table(['Executed consistency check','Result'],[[k.replace('_',' '),'PASS' if v e
 h('Reproduce the laboratory')
 code('''# In the extracted lab2 source directory:
 python -m pip install psycopg2-binary pymongo minio pillow
-docker compose up -d
+docker compose up --build -d
 docker compose ps
 python run_lab.py
 # Inspect evidence/*.json and the generated test_images/ directory.

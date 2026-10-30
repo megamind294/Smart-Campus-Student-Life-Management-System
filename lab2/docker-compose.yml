@@ -30,7 +30,10 @@ services:
       timeout: 3s
       retries: 30
   minio:
-    image: minio/minio:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.minio
+    image: lab2-minio:2025-09-07-source
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: lab2minio
