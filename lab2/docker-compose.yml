@@ -16,7 +16,7 @@ services:
       timeout: 3s
       retries: 30
   mongo:
-    image: mongo:8.0
+    image: mongo:7.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: labuser
       MONGO_INITDB_ROOT_PASSWORD: lab2-local-demo-2026

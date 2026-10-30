@@ -34,7 +34,7 @@ jobs:
         working-directory: lab2
         run: |
           mkdir -p evidence
-          docker compose up --build -d 2>&1 | tee evidence/compose-up.txt
+          docker compose up --build -d --wait --wait-timeout 120 2>&1 | tee evidence/compose-up.txt
       - name: Execute all required storage operations
         working-directory: lab2
         run: python -u run_lab.py | tee evidence/execution-output.txt
@@ -49,6 +49,7 @@ jobs:
           docker compose exec -T minio minio --version > evidence/minio-version.txt
           python -m pip freeze > evidence/python-requirements.txt
           docker version > evidence/docker-version.txt
+          uname -a > evidence/kernel.txt
           docker compose logs --no-color --tail 40 > evidence/container-logs.txt
       - name: Assemble final report and notebook
         working-directory: lab2

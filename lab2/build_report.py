@@ -120,6 +120,7 @@ p('The execution script successfully established a PostgreSQL connection, sent a
 table(['Recorded version / time','Value'],[['PostgreSQL',verification['postgres_version']],['MongoDB',verification['mongodb_version']],['Actual execution (UTC)',verification['actual_run_utc']]],[150,359],small=True)
 p('The UTC execution timestamp is distinct from the fixture upload_date and log timestamps. The latter deliberately start on 20 October 2026 to give deterministic sorting results.','Small2')
 p('MinIO is compiled from its official source release RELEASE.2025-09-07T16-13-09Z using the companion Dockerfile.minio. The source commit and binary version are captured in the evidence archive. The unavailable prebuilt image was not substituted with a different storage product.','Small2')
+p('MongoDB 7.0 was selected after the 8.0 container refused startup on the VM kernel. The successful server version is recorded above, and the host kernel is retained in kernel.txt. The laboratory does not require a particular MongoDB major version.','Small2')
 
 page();title('Task 4. Structured metadata in PostgreSQL')
 h('Table definition and indexes')
